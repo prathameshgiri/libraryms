@@ -57,7 +57,7 @@ export default function Login() {
         <motion.div variants={staggerItem} className="group">
           <label className="label-base dark:text-slate-300 mb-1.5 block">Email Address</label>
           <div className="relative flex items-center">
-            <Mail className="absolute left-4 w-5 h-5 text-slate-400 group-focus-within:text-brand-500 transition-colors duration-300" strokeWidth={1.75} />
+            <Mail className="absolute left-4 w-5 h-5 text-slate-400 group-focus-within:text-brand-500 transition-colors duration-300 z-10 pointer-events-none" strokeWidth={1.75} />
             <input
               {...register('email')}
               type="email"
@@ -78,7 +78,7 @@ export default function Login() {
         <motion.div variants={staggerItem} className="group">
           <label className="label-base dark:text-slate-300 mb-1.5 block">Password</label>
           <div className="relative flex items-center">
-            <Lock className="absolute left-4 w-5 h-5 text-slate-400 group-focus-within:text-brand-500 transition-colors duration-300" strokeWidth={1.75} />
+            <Lock className="absolute left-4 w-5 h-5 text-slate-400 group-focus-within:text-brand-500 transition-colors duration-300 z-10 pointer-events-none" strokeWidth={1.75} />
             <input
               {...register('password')}
               type={showPass ? 'text' : 'password'}
@@ -127,7 +127,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={isLoading}
-            className="btn-primary w-full py-2.5 text-sm font-bold shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 transition-all duration-300"
+            className="btn-primary w-full sm:w-auto px-10 py-2.5 !rounded-lg text-sm font-bold shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 transition-all duration-300"
           >
             {isLoading ? (
               <span className="flex items-center justify-center gap-2">
