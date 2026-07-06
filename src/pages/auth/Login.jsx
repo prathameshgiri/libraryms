@@ -22,12 +22,9 @@ export default function Login() {
   const { login, isLoading } = useAuth();
   const navigate = useNavigate();
 
-  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(schema),
-    defaultValues: { email: '', password: '', remember: false },
   });
-
-  const currentEmail = watch('email');
 
   const onSubmit = async (data) => {
     const result = await login(data.email, data.password, data.remember);
@@ -43,11 +40,6 @@ export default function Login() {
     }
   };
 
-  const fillCredentials = (user) => {
-    setValue('email', user.email);
-    setValue('password', user.password);
-  };
-
   return (
     <motion.div variants={staggerContainer} initial="hidden" animate="visible">
       {/* Header */}
@@ -58,52 +50,6 @@ export default function Login() {
         <p className="text-slate-500 dark:text-slate-400">
           Sign in to your Library MS account
         </p>
-      </motion.div>
-
-      {/* Demo Role Cards */}
-      <motion.div variants={staggerItem} className="mb-6">
-        <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
-          Quick Demo Login
-        </p>
-        <div className="grid grid-cols-3 gap-2">
-          {DEMO_USERS.map((u) => {
-            const role = ROLES[u.role];
-            const isActive = currentEmail === u.email;
-            return (
-              <motion.button
-                key={u.id}
-                type="button"
-                onClick={() => fillCredentials(u)}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                className={`relative flex flex-col items-center p-3 rounded-2xl border-2 transition-all text-center ${
-                  isActive
-                    ? 'border-brand-400 bg-brand-50 dark:bg-brand-900/30'
-                    : 'border-slate-100 dark:border-white/10 bg-white/60 dark:bg-white/5 hover:border-brand-200'
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="active-role"
-                    className="absolute inset-0 rounded-2xl bg-brand-50 dark:bg-brand-900/20 -z-10"
-                  />
-                )}
-                <div className={`w-10 h-10 ${role.color} rounded-xl flex items-center justify-center text-white text-base font-bold mb-2 shadow-sm`}>
-                  {role.badge}
-                </div>
-                <p className="text-[11px] font-semibold text-slate-700 dark:text-slate-200 leading-tight">
-                  {u.role === 'admin' ? 'Admin' : u.role === 'operator' ? 'Operator' : 'User'}
-                </p>
-                <p className="text-[10px] text-slate-400 mt-0.5 font-mono">{u.password}</p>
-                {isActive && (
-                  <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-brand-500 rounded-full flex items-center justify-center">
-                    <span className="text-white text-[8px]">✓</span>
-                  </span>
-                )}
-              </motion.button>
-            );
-          })}
-        </div>
       </motion.div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
