@@ -95,7 +95,19 @@ yarn dev
 ```
 
 **4. Open in Browser**
-Navigate to `http://localhost:5173` in your favorite browser. You will be greeted with the Login screen. You can use the quick-login demo cards to enter the platform.
+Navigate to `http://localhost:5173` in your favorite browser. Use the demo credentials below to log into the platform.
+
+---
+
+## 🔐 Demo Credentials
+
+Use the following test accounts to explore the different Role-Based dashboards:
+
+| Role | Email Address | Password |
+|------|---------------|----------|
+| **Super Admin** | `admin@libraryms.com` | `admin123` |
+| **Librarian Operator** | `operator@libraryms.com` | `operator123` |
+| **General User** | `user@libraryms.com` | `user123` |
 
 ---
 
